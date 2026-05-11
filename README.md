@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.7+-blue?logo=python" alt="Python 3.7+">
   <img src="https://img.shields.io/badge/platform-windows%20%7C%20linux%20%7C%20raspberry%20pi-lightgrey" alt="Platform">
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
 </p>
 
 <h1 align="center">SwiftBell</h1>
