@@ -182,6 +182,18 @@ python main.py start
 | Sound files not playing | Check paths in `timetable.json`; use WAV for best compat |
 | Missing voices | Run `python find_voice.py` (Windows only) |
 
+## Support
+
+If SwiftBell is useful to you, consider supporting its development:
+
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-support-%23ea4aaa?logo=github)](https://github.com/sponsors/emantey21)
+
+- **GitHub Sponsors** — monthly or one-time sponsorship (button on repo)
+- **PayPal** — coming soon
+- **Mobile Money (Momo)** — coming soon
+
+Every bit helps with hosting, testing hardware, and development time.
+
 ## Project status
 
 Active. Built for educational institutions needing a reliable, offline bell and announcement system.
