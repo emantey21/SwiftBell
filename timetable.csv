@@ -1,0 +1,5 @@
+day,time,event,type,message,sound_file
+Monday,08:00,Opening Bell,siren_and_announcement,"Good morning students and staff. The school day is starting.",sounds/opening_bell.mp3
+Monday,12:30,Lunch Break,announcement,"It is now lunch break. Please proceed to the cafeteria.",
+Monday,15:00,Closing Bell,siren_and_announcement,"This is the end of the school day. Have a safe journey home.",sounds/closing_bell.mp3
+Friday,12:00,Assembly Reminder,announcement,"Reminder: Please gather at the assembly hall for weekly assembly.",

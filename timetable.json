@@ -1,0 +1,34 @@
+[
+  {
+    "day": "Monday",
+    "time": "08:00",
+    "event": "Opening Bell",
+    "type": "siren_and_announcement",
+    "message": "Good morning students and staff. The school day is starting.",
+    "sound_file": "sounds/opening_bell.mp3"
+  },
+  {
+    "day": "Monday",
+    "time": "12:30",
+    "event": "Lunch Break",
+    "type": "announcement",
+    "message": "It is now lunch break. Please proceed to the cafeteria.",
+    "sound_file": ""
+  },
+  {
+    "day": "Monday",
+    "time": "15:00",
+    "event": "Closing Bell",
+    "type": "siren_and_announcement",
+    "message": "This is the end of the school day. Have a safe journey home.",
+    "sound_file": "sounds/closing_bell.mp3"
+  },
+  {
+    "day": "Friday",
+    "time": "12:00",
+    "event": "Assembly Reminder",
+    "type": "announcement",
+    "message": "Reminder: Please gather at the assembly hall for weekly assembly.",
+    "sound_file": ""
+  }
+]
