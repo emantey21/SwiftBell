@@ -3,6 +3,7 @@ import threading
 import time
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
@@ -25,7 +26,7 @@ audio = AudioManager(config)
 timetable = TimetableManager(config)
 scheduler = SchedulerManager(config, audio, timetable)
 
-scheduler_thread: threading.Thread | None = None
+scheduler_thread: Optional[threading.Thread] = None
 scheduler_running = False
 
 
