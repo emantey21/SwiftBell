@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+  <div class="col-md-8">
+    <h2 class="mb-0">Dashboard</h2>
+    <p class="text-secondary mt-1">{{ today }}, {{ current_time }}</p>
+  </div>
+  <div class="col-md-4 text-md-end">
+    <span id="status-dot" class="status-dot {{ 'running' if running else 'stopped' }}"></span>
+    <span id="status-label" class="badge {{ 'badge-running' if running else 'badge-stopped' }}">
+      {{ 'Running' if running else 'Stopped' }}
+    </span>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3 col-6">
+    <button class="btn btn-success w-100 py-3" onclick="api('start')" {{ 'disabled' if running }}>
+      ▶ Start
+    </button>
+  </div>
+  <div class="col-md-3 col-6">
+    <button class="btn btn-primary w-100 py-3" onclick="api('stop')" {{ 'disabled' if not running }}>
+      ■ Stop
+    </button>
+  </div>
+  <div class="col-md-3 col-6">
+    <button class="btn btn-warning w-100 py-3" onclick="api('reload')">
+      ↻ Reload
+    </button>
+  </div>
+  <div class="col-md-3 col-6">
+    <button class="btn btn-danger w-100 py-3" onclick="api('emergency')">
+      🚨 EMERGENCY
+    </button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Upcoming Events
+    <span class="badge bg-secondary ms-2">{{ events|length }}</span>
+  </div>
+  <div class="card-body p-0">
+    {% if events %}
+    <table class="table table-dark table-striped mb-0">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Event</th>
+          <th>Type</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for e in events %}
+        <tr>
+          <td><strong>{{ e.time }}</strong></td>
+          <td>{{ e.event }}</td>
+          <td><span class="badge bg-secondary">{{ e.type }}</span></td>
+          <td class="text-secondary">{{ e.message[:60] if e.message else '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="p-4 text-center text-secondary">
+      No events scheduled for today.
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

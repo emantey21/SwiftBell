@@ -9,7 +9,7 @@ import os
 class Config:
     """Configuration management"""
     
-    def __init__(self):
+    def __init__(self, config_file: str = "config.json"):
         # File paths
         self.settings = {
             # Timetable settings
@@ -53,7 +53,8 @@ class Config:
         }
         
         # Load from config file if it exists
-        self.load_from_file('config.json')
+        self._config_file = config_file
+        self.load_from_file(config_file)
     
     def get(self, key: str, default=None):
         """Get configuration value"""

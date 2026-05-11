@@ -167,7 +167,7 @@ SwiftBell - School Bell & Announcement System
 
 FIRST TIME SETUP:
     1. Install Python 3.9+ from python.org
-    2. Run: pip install pyttsx3 pygame PyQt5
+    2. Run: pip install -r requirements.txt
     3. Edit timetable.json with your schedule
     4. Add sound files to sounds/ folder (optional)
 

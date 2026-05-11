@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  swiftbell:
+    build: .
+    container_name: swiftbell
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./timetable.json:/app/timetable.json
+      - ./timetable.csv:/app/timetable.csv
+      - ./config.json:/app/config.json
+      - ./sounds:/app/sounds
+      - ./SwiftBell.log:/app/SwiftBell.log
+    restart: unless-stopped
+    devices:
+      - /dev/snd:/dev/snd
+    environment:
+      - PYTHONUNBUFFERED=1
