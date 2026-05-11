@@ -10,7 +10,7 @@ fi
 
 echo
 echo "Step 2: Installing Python libraries..."
-pip3 install pyttsx3 pygame
+pip3 install pyttsx3 pygame PyQt5
 
 echo
 echo "Step 3: Testing installation..."

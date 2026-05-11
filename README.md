@@ -18,6 +18,7 @@
 - **Text-to-speech announcements** — Cross-platform TTS (SAPI5 on Windows, espeak on Linux)
 - **Multi-audio playback** — Plays bells, sirens, and music files via pygame
 - **Emergency override** — Instant evacuation alert with siren + voice, interruptible from keyboard
+- **Desktop UI** — PyQt5 graphical interface with live status, controls, and log
 - **Auto-reload** — Detects timetable file changes every 5 minutes without restart
 - **Event dedup** — Each event fires once per day; resets at midnight
 - **Logging** — All activity recorded to `SwiftBell.log`
@@ -25,33 +26,54 @@
 
 ## Quick start
 
-### Prerequisites
+### Windows
 
-- Python 3.7+
-- **Linux / Raspberry Pi**: `sudo apt-get install espeak espeak-data alsa-utils`
-
-### Install & run
-
-```bash
+```batch
+:: 1. Install Python from https://python.org (add to PATH)
+:: 2. Clone and install
 git clone https://github.com/emantey21/SwiftBell.git
 cd SwiftBell
+pip install pyttsx3 pygame PyQt5
 
-pip install pyttsx3 pygame
-
-# Test audio
+:: 3. Run
 python main.py test
-
-# Start the system
 python main.py start
 ```
 
-Press `e` + Enter for emergency evacuation. Press Ctrl+C to stop.
+Or double-click `INSTALL.bat` to auto-install and test.
+
+### Linux / Raspberry Pi
+
+```bash
+# 1. System dependencies
+sudo apt-get install espeak espeak-data alsa-utils
+
+# 2. Clone and install
+git clone https://github.com/emantey21/SwiftBell.git
+cd SwiftBell
+pip install pyttsx3 pygame PyQt5
+
+# 3. Run
+python3 main.py test
+python3 main.py start
+```
+
+Or run `bash install.sh` to auto-install and test.
+
+### Desktop UI (both platforms)
+
+```bash
+python main.py ui
+```
+
+Press `e` + Enter for emergency evacuation (CLI mode). Press Ctrl+C to stop.
 
 ### Commands
 
 | Command | Action |
 |---------|--------|
 | `python main.py start` | Run the scheduler (default) |
+| `python main.py ui` | Launch the desktop UI |
 | `python main.py test` | Test audio playback and TTS |
 | `python main.py emergency` | Trigger immediate evacuation |
 | `python main.py status` | Show system status and upcoming events |
@@ -121,7 +143,7 @@ main.py                  CLI entrypoint, coordinates all components
 
 ```bash
 sudo apt-get install python3-pip python3-dev espeak espeak-data
-pip install pyttsx3 pygame
+pip install pyttsx3 pygame PyQt5
 ```
 
 Add to `/etc/rc.local`:
@@ -130,21 +152,32 @@ Add to `/etc/rc.local`:
 cd /home/pi/SwiftBell && python3 main.py start &
 ```
 
-### Windows (task scheduler)
+### Windows (Task Scheduler / Startup)
 
-Create a batch file or use Windows Task Scheduler to run:
+**Option A — Startup folder** (simplest):
+
+1. Press `Win + R`, type `shell:startup`, press Enter
+2. Create `SwiftBell.bat` in that folder with:
 
 ```batch
+@echo off
 cd /d "C:\path\to\SwiftBell"
 python main.py start
 ```
+
+**Option B — Task Scheduler** (runs on boot even before login):
+
+1. Open Task Scheduler → Create Basic Task
+2. Trigger: "When the computer starts"
+3. Action: Start a program → browse to `python.exe`, argument: `main.py start`, start in: your SwiftBell folder
 
 ## Troubleshooting
 
 | Symptom | Likely fix |
 |---------|------------|
 | No audio output | Check speakers; run `python main.py test` |
-| TTS not working | `pip install pyttsx3`; Linux: `sudo apt-get install espeak` |
+| TTS not working (Windows) | `pip install pyttsx3` — uses SAPI5 voices built into Windows |
+| TTS not working (Linux) | `sudo apt-get install espeak espeak-data` |
 | Timetable not loading | Verify JSON/CSV format and HH:MM time strings |
 | Sound files not playing | Check paths in `timetable.json`; use WAV for best compat |
 | Missing voices | Run `python find_voice.py` (Windows only) |
